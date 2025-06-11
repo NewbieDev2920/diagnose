@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title><!-- Font Icon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'material-design-iconic-font.min.css') }}"><!-- Main css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style2.css') }}">
+</head>
+<div class="main">
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="{{ url_for('static', filename = 'logo.jpeg') }}" alt="sing up image"></figure>
+                </div>
+                <div class="signin-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form class="register-form" id="login-form" method="POST">
+                        <div class="form-group"><label for="your_name"></label><input id="your_name" type="text" name="your_name" placeholder="Your Name"></div>
+                        <div class="form-group"><label for="your_pass"></label><input id="your_pass" type="password" name="your_pass" placeholder="Password"></div>
+                        <div class="form-group"></div>
+                        <div class="form-group form-button"><a class="form-submit" id="signin" onclick="submitData()">Log in</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div><!-- JS-->
+<script>
+    function submitData() {
+        let data = {
+            user: document.getElementById('your_name').value,
+            password: document.getElementById('your_pass').value,
+        }
+
+        let status = "";
+
+        fetch('/patientauth', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(data),
+        }).then(res => res.json()).then(res => {
+            if (res.status === "OK") {
+                window.location.href = res.redirect;
+            }
+        }).catch(err => console.error('Error: ', err))
+    }
+</script><!-- This templates was made by Colorlib (https://colorlib.com)-->

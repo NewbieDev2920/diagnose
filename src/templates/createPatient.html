@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/createRecord.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header><a href="index.html"><img id="logo" src="/images/logo.jpeg" alt="logo"></a>
+        <div class="header-auth">Nombre Medico</div>
+    </header>
+    <div class="content">
+        <div class="catalog-background">
+            <div class="column-left">
+                <form action="/newrecord" method="post"><label for="lastname">Apellidos Paciente</label><input id="lastname" type="text" name="lastname"><br><br><label for="firstname">Nombres Paciente</label><input id="firstname" type="text" name="firstname"><br><br><label for="idtype">Tipo de identificacion</label><select id="idtype" name="idtype">
+                        <option value="C.C">Cedula de ciudadania</option>
+                        <option value="PASS">Pasaporte</option>
+                        <option value="T.I">Tarjeta de identidad</option>
+                        <option value="R.C">Registro civil</option>
+                        <option value="C.E">Cedula de extranjeria</option>
+                        <option value="N.A">OTRO</option>
+                    </select><br><br><label for="id">ID</label><input id="id" type="text" name="id"><br><br><label for="birthdate">Fecha de nacimiento</label><input id="birthdate" type="date" name="birthdate"><br><br></form>
+                <p id="operation-message"></p>
+            </div>
+            <div class="column-right"><label for="cellphone">Celular</label><input id="cellphone" type="text" name="cellphone"><br><br><label for="email">Correo</label><input id="email" type="email" name="email"><br><br><label for="user">Usuario</label><input id="user" type="text" name="user"><br><br><label for="password">Contraseña</label><input id="password" type="password" name="password"><br><br>
+                <div class="container-image">a</div>
+                <div class="button-create"><a id="submitrecord" onclick="submitData()">Guardar</a><a id="cancelrecord" href="/catalog">Volver</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    let submitButton = document.getElementById('submitRecord');
+    submitButton.addEventListener("onclick", submitData);
+
+    function submitData() {
+        let formData = {
+            fullname: document.getElementById("lastname").value + " " + document.getElementById("firstname").value,
+            idtype: document.getElementById("idtype").value,
+            id: document.getElementById("id").value,
+            birthdate: document.getElementById("birthdate").value,
+            cellphone: document.getElementById("cellphone").value,
+            email: document.getElementById("email").value,
+            user: document.getElementById("user").value,
+            password: document.getElementById('password').value,
+        }
+        console.log(formData);
+        fetch('/newpatient', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        }).then((response) => response.json()).then((data) => console.log('Success:', data)).catch((error) => console.error('ERROR:', error));
+        let userMessage = document.getElementById('operation-message');
+        userMessage.innerHTML = "PACIENTE AGREGADO."
+        userMessage.style.color = "green";
+
+    }
+</script>

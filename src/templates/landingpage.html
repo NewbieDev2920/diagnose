@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Imagenes diagnosticas y nefrlogia</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
+</head>
+
+<body><!-- Header-->
+    <header id="header">
+        <div class="inner"><a class="logo" href="/landingpage"><a href="/patientlogin">Pacientes</a><a href="/mediclogin">Medicos</a></a><a class="navPanelToggle" href="#navPanel"><span class="fa fa-bars"></span></a></div>
+    </header><!-- Banner-->
+    <section id="banner">
+        <h1>IMAGENES DIAGNOSTICAS Y NEFROLOGIA</h1>
+        <p>Servicio de imagenes diagnosticas y nefrologia de alta calidad realizado por especialistas.</p>
+    </section><!-- One-->
+    <section class="wrapper" id="one">
+        <div class="inner">
+            <div class="flex flex-2">
+                <article>
+                    <header>
+                        <h3>Imagenes</h3>
+                    </header>
+                    <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu.</p>
+                    <footer><a class="button special" href="#">More</a></footer>
+                </article>
+                <article>
+                    <header>
+                        <h3>Nefrologia</h3>
+                    </header>
+                    <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu.</p>
+                    <footer><a class="button special" href="#">More</a></footer>
+                </article>
+            </div>
+        </div>
+    </section><!-- Two-->
+    <section class="wrapper style1 special" id="two">
+        <div class="inner">
+            <header>
+                <h2>Ipsum Feugiat</h2>
+                <p>Semper suscipit posuere apede</p>
+            </header>
+            <div class="flex flex-4">
+                <div class="box person">
+                    <div class="image round"><img src="{{ url_for('static', filename = 'pic03.jpg') }}" alt="Person 1" width="168" height="168"></div>
+                    <h3>Magna</h3>
+                    <p>Cipdum dolor</p>
+                </div>
+                <div class="box person">
+                    <div class="image round"><img src="{{ url_for('static', filename = 'pic04.jpg') }}" alt="Person 2" width="168" height="168"></div>
+                    <h3>Ipsum</h3>
+                    <p>Vestibulum comm</p>
+                </div>
+                <div class="box person">
+                    <div class="image round"><img src="{{ url_for('static', filename = 'pic05.jpg') }}" alt="Person 3" width="168" height="168"></div>
+                    <h3>Tempus</h3>
+                    <p>Fusce pellentes</p>
+                </div>
+                <div class="box person">
+                    <div class="image round"><img src="{{ url_for('static', filename = 'pic06.jpg') }}" alt="Person 4" width="168" height="168"></div>
+                    <h3>Dolore</h3>
+                    <p>Praesent placer</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- Three-->
+    <section class="wrapper special" id="three">
+        <div class="inner">
+            <header class="align-center">
+                <h2>Contactanos</h2>
+                <p>Agrega tus datos personales para ponernos en contacto. </p>
+            </header>
+            <div class="flex flex-2">
+                <article>
+                    <form action="/contact" method="post" onsubmit="event.preventDefault(); contact();"><label for="email">Email / Correo Electronico</label><input id="email" type="email"><label for="cellphone">Numero de telefono</label><input id="cellphone" type="text"><label for="names">Nombre y apellido</label><input id="names" type="text"><label for="issue">Asunto o sugerencia</label><input id="issue" type="text"><input id="submitbutton" type="submit" value="Enviar"></form>
+                </article>
+                <article>
+                    <div class="image fit"><img src="{{ url_for('static', filename = 'pic02.jpg') }}" alt="Pic 02" width="576" height="196"></div>
+                    <header>
+                        <h3>Fusce pellentesque tempus</h3>
+                    </header>
+                    <p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet, sagittis vel, euismod vel, velit. Pellentesque egestas sem. Suspendisse commodo ullamcorper magna non comodo sodales tempus.</p>
+                    <footer><a class="button special" href="#">More</a></footer>
+                </article>
+            </div>
+        </div>
+    </section><!-- Footer-->
+    <footer id="footer">
+        <div class="inner">
+            <div class="flex">
+                <ul class="icons">
+                    <li><a class="icon fa-facebook" href="#"><span class="label">Facebook</span></a></li>
+                    <li><a class="icon fa-twitter" href="#"><span class="label">Twitter</span></a></li>
+                    <li><a class="icon fa-linkedin" href="#"><span class="label">linkedIn</span></a></li>
+                    <li><a class="icon fa-pinterest-p" href="#"><span class="label">Pinterest</span></a></li>
+                    <li><a class="icon fa-vimeo" href="#"><span class="label">Vimeo</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">Site made with:<a href="https://templated.co/">TEMPLATED.CO</a></div><!-- Scripts-->
+    <script src="home/assets/js/jquery.min.js"></script>
+    <script src="home/assets/js/skel.min.js"></script>
+    <script src="home/assets/js/util.js"></script>
+    <script src="home/assets/js/main.js"></script>
+</body>
+
+</html>
+<script>
+    function contact() {
+        const data = {
+            email: document.getElementById("email").value,
+            names: document.getElementById("names").value,
+            phone: document.getElementById("cellphone").value,
+            issue: document.getElementById("issue").value
+        };
+        fetch('/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        document.getElementById("email").value = "";
+        document.getElementById("names").value = "";
+        document.getElementById("cellphone").value = "";
+        document.getElementById("issue").value = "";
+        document.getElementById("submitbutton").value = "Enviado";
+    }
+</script>

@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="css/catalogstyles.css" />
+</head>
+
+<body id="main" onload="getRecords()">
+    <div class="profileinfocontainer">
+        <h1></h1>
+    </div>
+    <ol id="recordlist" style="--length: 5" role="list"></ol>
+</body>
+<script>
+    function getRecords() {
+        let bodyElement = document.getElementById('main');
+        let correspondingURL;
+
+        if (bodyElement.getAttribute('user') === "patient") {
+            correspondingURL = '/getrecords';
+        } else if (bodyElement.getAttribute('user') === 'medic') {
+            correspondingURL = '/getrecordsmediclevel?id=' + bodyElement.getAttribute('patientid');
+        }
+
+        fetch(correspondingURL)
+            .then(res => res.json())
+            .then(res => {
+                let recordList = document.getElementById('recordlist');
+                let displayList = res.recordList;
+                for (let i = 0; i < displayList.length; i++) {
+                    console.log(i + 1, displayList[i]);
+                    recordList.innerHTML += `<li style="--i: 5">
+                                            <h3>Examen de ${displayList[i].patientName}</h3>
+                                            <p>${displayList[i].date}</p>
+                                            <br>
+                                            <br>
+                                            <a class="focusbutton" href="/focusrecord?id=${displayList[i].id}">Ver</div>
+                                        </li>`;
+                }
+            })
+            .catch(err => console.error(':( ', err));
+    }
+</script>

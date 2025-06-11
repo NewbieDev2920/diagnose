@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'medicLogin.css') }}" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content-container">
+        <div class="logo-container"><a href="index.html"><img id="logo" src="{{ url_for('static', filename = 'logo.jpeg') }}" alt="logo" /></a></div>
+        <div class="input-container"><input id="user" name="user" placeholder="Usuario" type="text" /><input id="password" name="password" placeholder="Contraseña" type="password" /></div><a class="button">Ingresar</a>
+    </div>
+</body>
+<script>
+    // Wait for the DOM to load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select the button
+        const button = document.getElementsByClassName('button')[0];
+
+        // Add an onclick event listener
+        button.addEventListener('click', () => {
+            submitData();
+        });
+    });
+
+    // Submit data function
+    function submitData() {
+        let data = {
+            user: document.getElementById('user').value,
+            password: document.getElementById('password').value
+        };
+
+        fetch('/medicauth', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === "OK") {
+                    window.location.href = res.redirect;
+                }
+            })
+            .catch(err => console.error('Error:', err));
+    }
+</script>
