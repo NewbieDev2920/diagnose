@@ -8,7 +8,7 @@ def patient_record_catalog():
 
 @patient_bp.route('/focusrecord')
 def focus_record():
-    pass
+    return render_template('focusrecord.html')
 
 @patient_bp.route('/getrecords')
 def get_records():

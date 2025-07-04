@@ -1,0 +1,7 @@
+{
+	"exit" : "exits the application",
+	"help" : "Displays the help section",
+	"new medic": "starts the process for medic profile creation",
+	"search medic" : "search for a medic and displays the query result, it can be searched through id or fullname, use /file <<<RELATIVE PATH>>> to introduce id with files",
+	"list medic" : "Returns a list of all medics, use for debug."
+}

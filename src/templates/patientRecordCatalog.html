@@ -1,12 +1,20 @@
 <head>
-    <link rel="stylesheet" href="css/catalogstyles.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename = 'catalogstyles.css') }}" />
 </head>
 
 <body id="main" onload="getRecords()">
     <div class="profileinfocontainer">
         <h1></h1>
     </div>
-    <ol id="recordlist" style="--length: 5" role="list"></ol>
+    <ol id="recordlist" style="--length: 5" role="list">
+		<li style="--i: 5">
+			<h3>Examen de olii</h3>
+		   	<p></p>
+		   	<br>
+		    <br>
+		    <a class="focusbutton" href="/focusrecord?id=${displayList[i].id}">Ver</a>
+		</li>
+    </ol>
 </body>
 <script>
     function getRecords() {
@@ -31,7 +39,7 @@
                                             <p>${displayList[i].date}</p>
                                             <br>
                                             <br>
-                                            <a class="focusbutton" href="/focusrecord?id=${displayList[i].id}">Ver</div>
+                                            <a class="focusbutton" href="/focusrecord?id=${displayList[i].id}">Ver</a>
                                         </li>`;
                 }
             })

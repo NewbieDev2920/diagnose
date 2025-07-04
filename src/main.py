@@ -4,16 +4,30 @@
 #TODO: agregar correctamente focusrecord.html
 
 from flask import Flask, render_template
-from database.db import db
+
+app = Flask(__name__)
+app.debug = True
+
+from sqlalchemy import text
+#from database.db import db
 from routes.medic import medic_bp
 from routes.patient import patient_bp
 from routes.home import home_bp
+from database.db import db
+from config import *
+from models.Medic import Medic
+from models.Patient import Patient
+from models.Record import Record
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///student.sqlite3'
-app.debug = True
-
+#%%% DATABSE CONFIG AND CONNECTION
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
 db.init_app(app)
+with app.app_context():
+    db.session.execute(text(SQLITE_MANUAL_MEDIC_TABLE_CREATION))
+    print(db.session.get(Medic,'1'))
+
+#%%%
 
 app.register_blueprint(medic_bp, url_prefix='/medic')
 app.register_blueprint(patient_bp, url_prefix='/patient')

@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/createRecord.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'catalog.css') }}">
     <title>Document</title>
 </head>
 
 <body>
-    <header><a href="index.html"><img id="logo" src="/images/logo.jpeg" alt="logo"></a>
+    <header><a href="index.html"><img id="logo" src="{{ url_for('static', filename = 'logo.jpeg') }}" alt="logo"></a>
         <div class="header-auth">Nombre Medico</div>
     </header>
     <div class="content">

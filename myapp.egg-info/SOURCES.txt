@@ -1,0 +1,15 @@
+README.md
+setup.py
+myapp.egg-info/PKG-INFO
+myapp.egg-info/SOURCES.txt
+myapp.egg-info/dependency_links.txt
+myapp.egg-info/top_level.txt
+src/__init__.py
+src/config.py
+src/main.py
+src/database/__init__.py
+src/database/db.py
+src/models/Medic.py
+src/models/Patient.py
+src/models/Record.py
+src/models/__init__.py

@@ -1,0 +1,15 @@
+README.md
+setup.py
+src/database/CrudOp.py
+src/database/__init__.py
+src/database/db.py
+src/models/Medic.py
+src/models/Patient.py
+src/models/Record.py
+src/models/__init__.py
+src/myapp.egg-info/PKG-INFO
+src/myapp.egg-info/SOURCES.txt
+src/myapp.egg-info/dependency_links.txt
+src/myapp.egg-info/top_level.txt
+src/utils/__init__.py
+src/utils/idGenerator.py

@@ -14,7 +14,7 @@ def catalog():
 def create_record():
     return render_template('createRecord.html')
 
-@medic_bp.route('/create_patient')
+@medic_bp.route('/createpatient')
 def create_patient():
     return render_template('createPatient.html')
 
